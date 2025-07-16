@@ -155,16 +155,14 @@ mkdir -p /opt/marzban/wgcf
 # Download wgcf binary
 WGCF_LATEST_URL=$(curl -s https://api.github.com/repos/ViRb3/wgcf/releases/latest | grep "browser_download_url" | grep "linux_amd64" | cut -d '"' -f 4)
 wget "$WGCF_LATEST_URL" -O /usr/local/bin/wgcf
-chmod +x /usr/local/bin/wgcf
 
-sed -i -E 's/, [0-9a-f:]+\/128//; s/, ::\/0//' /opt/marzban/wgcf/wg0.conf
+chmod +x /usr/local/bin/wgcf
 # Configure Cloudflare Warp
 echo "Configuring Cloudflare Warp..."
 wgcf register --accept-tos
 wgcf generate
 mv wgcf-profile.conf /opt/marzban/wgcf/wg0.conf
 mv wgcf-account.toml /opt/marzban/wgcf/
-
 sed -i -E 's/, [0-9a-f:]+\/128//; s/, ::\/0//' /opt/marzban/wgcf/wg0.conf
 sleep 3
 docker restart wgcf-warp
