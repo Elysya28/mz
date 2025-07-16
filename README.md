@@ -1,6 +1,6 @@
 
 - chmod +x install.sh
-- sudo su > ./install.sh <OR> sudo su -c "./install.sh"
+- sudo su > ./install.sh OR sudo su -c "./install.sh"
 
 
 - Source
