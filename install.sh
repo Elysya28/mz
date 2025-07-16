@@ -109,7 +109,7 @@ wget -O /opt/marzban/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads
 sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /opt/marzban/nginx.conf
 
 # Download xray_config.json
-wget -O /opt/marzban/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config.json
+wget -O /var/lib/marzban/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config.json
 # Replace "password": "$XRAY_UUID" with the generated XRAY_UUID in xray_config.json
 sed -i "s/\"password\": \"\$XRAY_UUID\"/\"password\": \"$XRAY_UUID\"/" /opt/marzban/xray_config.json
 
