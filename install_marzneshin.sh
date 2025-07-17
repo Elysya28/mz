@@ -1,8 +1,4 @@
-
-# Set default language to English and make it the first option in index.html
-sed -i 's/<option value="fa">فارسی<\/option>/<option value="en" selected>English<\/option>\n  <option value="fa">فارسی<\/option>/' /var/lib/marzban/templates/subscription/index.html
-sed -i 's/<option value="en">English<\/option>//' /var/lib/marzban/templates/subscription/index.html
-sed -i 's/<option value="fa" selected>/<option value="fa">/' /var/lib/marzban/templates/subscription/index.html#!/bin/bash
+#!/bin/bash
 
 set -e
 # Ensure running as root
@@ -51,7 +47,7 @@ marzban down >/dev/null 2>&1 || true
 rm -Rf /opt/marzban >/dev/null 2>&1 || true
 rm -Rf /var/lib/marzban >/dev/null 2>&1 || true
 
-bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzneshin)" @ install
+bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzban)" @ install
 sleep 50
 
 marzban cli admin create --sudo
@@ -198,3 +194,65 @@ if [[ "$answer" =~ ^[Yy]$ ]]; then
 else
   echo "Reboot cancelled. Please reboot manually if needed."
 fi
+
+# Set default language to English and make it the first option in index.html
+sed -i 's/<option value="fa">فارسی<\/option>/<option value="en" selected>English<\/option>\n  <option value="fa">فارسی<\/option>/' /var/lib/marzban/templates/subscription/index.html
+sed -i 's/<option value="en">English<\/option>//' /var/lib/marzban/templates/subscription/index.html
+sed -i 's/<option value="fa" selected>/<option value="fa">/' /var/lib/marzban/templates/subscription/index.html#!/bin/bash
+
+set -e
+# Ensure running as root
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root (e.g., with sudo su)" >&2
+  exit 1
+fi
+# Define the domain for your Marzban instance
+read -p "Enter your domain for Marzban: " DOMAIN
+read -p "Enter your email for SSL certificate: " MAIL
+
+
+# Update the system and install necessary packages
+apt update -qq -y && apt upgrade -y
+apt install curl wget git ufw gnupg2 lsb-release socat tree net-tools vnstat iptables xz-utils apt-transport-https dnsutils cron bash-completion -y
+
+# Install speedtest
+echo "Checking for existing speedtest installation..."
+if command -v speedtest >/dev/null 2>&1; then
+    echo "speedtest is already installed. Skipping installation."
+else
+    echo "Installing speedtest..."
+    wget -q https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz > /dev/null 2>&1
+    tar xzf ookla-speedtest-1.2.0-linux-x86_64.tgz > /dev/null 2>&1
+    mv speedtest /usr/bin/
+    rm -f ookla-* speedtest.* > /dev/null 2>&1
+fi
+
+# Enable BBR
+echo "Enabling BBR congestion control..."
+modprobe tcp_bbr >/dev/null 2>&1
+echo "tcp_bbr" | tee -a /etc/modules-load.d/modules.conf
+sysctl -w net.core.default_qdisc=fq
+sysctl -w net.ipv4.tcp_congestion_control=bbr
+if sysctl net.ipv4.tcp_congestion_control | grep -q bbr; then
+  echo "BBR has been enabled."
+else
+  echo "Failed to enable BBR."
+fi
+sysctl -p >/dev/null 2>&1
+
+rm -Rf /opt/marzban >/dev/null 2>&1 || true
+# Install Marzban
+marzban down >/dev/null 2>&1 || true
+
+rm -Rf /opt/marzban >/dev/null 2>&1 || true
+rm -Rf /var/lib/marzban >/dev/null 2>&1 || true
+
+bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzneshin)" @ install
+sleep 50
+
+marzban cli admin create --sudo
+
+[ -f /$HOME/reality.txt ] && rm -f /$HOME/reality.txt
+[ -f /$HOME/shortIds.txt ] && rm -f /$HOME/shortIds.txt
+[ -f /$HOME/xray_uuid.txt ] && rm -f /$HOME/xray_uuid.txt
+
