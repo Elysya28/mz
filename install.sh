@@ -96,7 +96,7 @@ else
     chmod 644 "/var/lib/marzban/certs/fullchain.pem"
 fi
 
-wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env-marzban
+wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env
 # Download docker-compose.yml
 wget -O /opt/marzban/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose.yml
 
