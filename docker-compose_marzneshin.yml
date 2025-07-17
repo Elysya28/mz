@@ -1,0 +1,46 @@
+services:
+  marzneshin:
+    image: gozargah/marzneshin:latest
+    restart: always
+    env_file: .env
+    volumes:
+      - /var/lib/marzneshin:/var/lib/marzneshin
+    ports:
+      - "8000:8000"
+    networks:
+      - marzneshin-net
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - /opt/marzneshin/nginx.conf:/etc/nginx/nginx.conf
+      - /var/lib/marzneshin/certs:/etc/nginx/certs
+      - /var/www/html:/var/www/html
+    ports:
+      - "443:443"
+    depends_on:
+      - marzneshin
+    networks:
+      - marzneshin-net
+  wgcf-warp:
+    image: linuxserver/wireguard
+    container_name: wgcf-warp
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
+    volumes:
+      - /opt/marzneshin/wgcf:/config
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: always
+    networks:
+      - marzneshin-net
+
+networks:
+  marzneshin-net:
+    driver: bridge
