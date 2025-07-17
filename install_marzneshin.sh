@@ -1,4 +1,8 @@
-#!/bin/bash
+
+# Set default language to English and make it the first option in index.html
+sed -i 's/<option value="fa">فارسی<\/option>/<option value="en" selected>English<\/option>\n  <option value="fa">فارسی<\/option>/' /var/lib/marzban/templates/subscription/index.html
+sed -i 's/<option value="en">English<\/option>//' /var/lib/marzban/templates/subscription/index.html
+sed -i 's/<option value="fa" selected>/<option value="fa">/' /var/lib/marzban/templates/subscription/index.html#!/bin/bash
 
 set -e
 # Ensure running as root
@@ -47,7 +51,7 @@ marzban down >/dev/null 2>&1 || true
 rm -Rf /opt/marzban >/dev/null 2>&1 || true
 rm -Rf /var/lib/marzban >/dev/null 2>&1 || true
 
-bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzban)" @ install
+bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzneshin)" @ install
 sleep 50
 
 marzban cli admin create --sudo
