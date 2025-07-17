@@ -106,7 +106,7 @@ wget -O /opt/marzban/nginx.conf https://raw.githubusercontent.com/nationpwned/mz
 sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /opt/marzban/nginx.conf
 
 # Download xray_config.json
-wget -O /var/lib/marzban/xray_config.json https://raw.githubusercontent.com/nationpwned/mz/refs/heads/main/nginx.conf
+wget -O /var/lib/marzban/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config.json
 
 sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzban/xray_config.json
 
