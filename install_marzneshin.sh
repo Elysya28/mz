@@ -47,7 +47,7 @@ marzban down >/dev/null 2>&1 || true
 rm -Rf /opt/marzban >/dev/null 2>&1 || true
 rm -Rf /var/lib/marzban >/dev/null 2>&1 || true
 
-bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzban)" @ install
+bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzneshin)" @ install
 sleep 50
 
 marzban cli admin create --sudo
