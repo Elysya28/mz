@@ -98,9 +98,9 @@ fi
 
 wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env-marzban
 # Download docker-compose.yml
-wget -O /opt/marzban/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose.yml
+wget -O /opt/marzban/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose_marzban.yml
 
-wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env
+wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env-marzbanhttps://github.com/nationpwned/mz/raw/refs/heads/main/envhttps://github.com/nationpwned/mz/raw/refs/heads/main/envhttps://github.com/nationpwned/mz/raw/refs/heads/main/env
 # Download nginx.conf
 wget -O /opt/marzban/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads/main/nginx.conf
 
