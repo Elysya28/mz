@@ -28,6 +28,20 @@ services:
     volumes:
       - /var/lib/marznode:/var/lib/marznode
 
+  xray:
+    image: teddysun/xray:latest
+    restart: always
+    network_mode: host
+    environment:
+      - XRAY_CONFIG=/etc/xray/config.json
+    volumes:
+      - /etc/xray:/etc/xray
+      - /var/lib/marznode:/var/lib/marznode
+    depends_on:
+      - marznode
+    networks:
+      - marzneshin-net
+
   nginx:
     image: nginx:latest
     restart: always
@@ -41,6 +55,7 @@ services:
       - marzneshin
     networks:
       - marzneshin-net
+
   wgcf-warp:
     image: linuxserver/wireguard
     container_name: wgcf-warp
