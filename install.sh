@@ -115,7 +115,7 @@ sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzban/xray_config.json
 
 # Download the subscribers Marzban
 mkdir -p /var/lib/marzban/templates/subscription/
-wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/x0sina/marzban-sub/main/index.html
+wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/nationpwned/mz/raw/refs/heads/main/index.html
 
 # Set default language to English and make it the first option in index.html
 sed -i 's/<option value="fa">فارسی<\/option>/<option value="en" selected>English<\/option>\n  <option value="fa">فارسی<\/option>/' /var/lib/marzban/templates/subscription/index.html
