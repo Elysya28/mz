@@ -100,7 +100,7 @@ wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/
 # Download docker-compose.yml
 wget -O /opt/marzban/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose_marzban.yml
 
-wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose_marzban.yml
+wget -O /opt/marzban/.env https://raw.githubusercontent.com/nationpwned/mz/refs/heads/main/env-marzban
 # Download nginx.conf
 wget -O /opt/marzban/nginx.conf https://raw.githubusercontent.com/nationpwned/mz/refs/heads/main/nginx_marzban.conf
 # Replace placeholders in nginx.conf with user input
