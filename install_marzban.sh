@@ -1,4 +1,4 @@
-marzneshin#!/bin/bash
+#!/bin/bash
 
 set -e
 # Ensure running as root
