@@ -36,11 +36,6 @@ services:
       - XRAY_CONFIG=/etc/xray/config.json
     volumes:
       - /etc/xray:/etc/xray
-      - /var/lib/marznode:/var/lib/marznode
-    depends_on:
-      - marznode
-    networks:
-      - marzneshin-net
 
   nginx:
     image: nginx:latest
