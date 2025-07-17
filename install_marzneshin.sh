@@ -98,16 +98,16 @@ fi
 
 wget -O /etc/opt/marzneshin/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env-marzneshin
 # Download docker-compose.yml
-wget -O /etc/opt/marzneshin/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose.yml
+wget -O /etc/opt/marzneshin/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose_marzneshin.yml
 
 # Download nginx.conf
-wget -O /etc/opt/marzneshin/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads/main/nginx.conf
+wget -O /etc/opt/marzneshin/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads/main/nginx_marzneshin.conf
 
 # Replace placeholders in nginx.conf with user input
 sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /etc/opt/marzneshin/nginx.conf
 
 # Download xray_config.json
-wget -O /var/lib/marzneshin/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config.json
+wget -O /var/lib/marzneshin/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config_marzneshin.json
 
 sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzneshin/xray_config.json
 
