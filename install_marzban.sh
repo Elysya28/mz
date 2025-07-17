@@ -1,4 +1,4 @@
-#!/bin/bash
+marzneshin#!/bin/bash
 
 set -e
 # Ensure running as root
@@ -100,15 +100,14 @@ wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/
 # Download docker-compose.yml
 wget -O /opt/marzban/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose_marzban.yml
 
-wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env-marzbanhttps://github.com/nationpwned/mz/raw/refs/heads/main/envhttps://github.com/nationpwned/mz/raw/refs/heads/main/envhttps://github.com/nationpwned/mz/raw/refs/heads/main/env
+wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose_marzban.yml
 # Download nginx.conf
-wget -O /opt/marzban/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads/main/nginx.conf
-
+wget -O /opt/marzban/nginx.conf https://raw.githubusercontent.com/nationpwned/mz/refs/heads/main/nginx_marzban.conf
 # Replace placeholders in nginx.conf with user input
 sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /opt/marzban/nginx.conf
 
 # Download xray_config.json
-wget -O /var/lib/marzban/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config.json
+wget -O /var/lib/marzban/xray_config.json https://raw.githubusercontent.com/nationpwned/mz/refs/heads/main/nginx_marzban.conf
 
 sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzban/xray_config.json
 
