@@ -96,11 +96,9 @@ else
     chmod 644 "/var/lib/marzneshin/certs/fullchain.pem"
 fi
 
-wget -O /etc/opt/marzneshin/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env
+wget -O /etc/opt/marzneshin/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env-marzneshin
 # Download docker-compose.yml
 wget -O /etc/opt/marzneshin/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose.yml
-
-wget -O /etc/opt/marzneshin/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env
 
 # Download nginx.conf
 wget -O /etc/opt/marzneshin/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads/main/nginx.conf
