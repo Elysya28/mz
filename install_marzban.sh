@@ -117,11 +117,6 @@ sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzban/xray_config.json
 mkdir -p /var/lib/marzban/templates/subscription/
 wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/nationpwned/mz/raw/refs/heads/main/index.html
 
-# Set default language to English and make it the first option in index.html
-sed -i 's/<option value="fa">فارسی<\/option>/<option value="en" selected>English<\/option>\n  <option value="fa">فارسی<\/option>/' /var/lib/marzban/templates/subscription/index.html
-sed -i 's/<option value="en">English<\/option>//' /var/lib/marzban/templates/subscription/index.html
-sed -i 's/<option value="fa" selected>/<option value="fa">/' /var/lib/marzban/templates/subscription/index.html
-
 ufw --force enable
 # Firewall configuration
 echo "Configuring firewall..."
