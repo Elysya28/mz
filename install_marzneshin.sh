@@ -46,6 +46,7 @@ marzneshin down >/dev/null 2>&1 || true
 
 rm -Rf /etc/opt/marzneshin >/dev/null 2>&1 || true
 rm -Rf /var/lib/marzneshin >/dev/null 2>&1 || true
+rm -Rf /var/lib/marznode >/dev/null 2>&1 || true
 
 bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzneshin)" @ install
 sleep 50
