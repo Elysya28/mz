@@ -60,7 +60,7 @@ HOME_PAGE_TEMPLATE=home/index.html
 ## External config to import into v2ray format subscription
 # EXTERNAL_CONFIG = config://...
 
-SQLALCHEMY_DATABASE_URL=sqlite:////var/lib/marzneshin/db.sqlite3
+# SQLALCHEMY_DATABASE_URL=sqlite:////var/lib/marzneshin/db.sqlite3
 # SQLALCHEMY_POOL_SIZE = 10
 # SQLALCHEMY_MAX_OVERFLOW = 30
 
