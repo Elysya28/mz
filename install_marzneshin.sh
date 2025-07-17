@@ -107,15 +107,14 @@ wget -O /etc/opt/marzneshin/docker-compose.yml https://github.com/nationpwned/mz
 # Download nginx.conf
 wget -O /etc/opt/marzneshin/nginx.conf https://github.com/nationpwned/mz/raw/refs/heads/main/nginx_marzneshin.conf
 
-# Replace placeholders in nginx.conf with user input
-sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /etc/opt/marzneshin/nginx.conf
-
 # Download xray_config.json
 wget -O /var/lib/marzneshin/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config_marzneshin.json
 
 #sql
 wget -O /var/lib/marzneshin/db.sqlite3 https://github.com/nationpwned/mz/raw/refs/heads/main/db.sqlite3
 
+# Replace placeholders in nginx.conf with user input
+sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /etc/opt/marzneshin/nginx.conf
 sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzneshin/xray_config.json
 
 ufw --force enable
