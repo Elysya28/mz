@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <!-- Monospace font only, no Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
@@ -24,6 +23,9 @@
             --box-shadow-lg: 0 0 32px #00ff99cc;
             --transition-fast: 0.15s;
             --transition-normal: 0.25s;
+            --button-green: #006400;
+            --button-dark-green: #004d00;
+            --button-red: #ff3333;
         }
 
         * {
@@ -54,13 +56,12 @@
             overflow: hidden;
             position: relative;
             transition: all var(--transition-normal) ease;
-            backdrop-filter: blur(var(--blur-sm));
             border: 1px solid var(--border-color);
             transform-style: preserve-3d;
-            transform: translateZ(0) rotateX(0) rotateY(0);
+            transform: translateZ(0) rotateY(0);
         }
         .card:hover {
-            box-shadow: var(--box-shadow-glass);
+            transform: translateZ(10px) rotateY(5deg);
             background-color: var(--card-background-hover);
         }
         .card-header {
@@ -107,7 +108,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: var(--primary-gradient);
+            background: var(--button-green);
             border-radius: 3px;
         }
         .username {
@@ -125,7 +126,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: var(--primary-gradient);
+            background: var(--button-green);
         }
         .info-grid {
             display: grid;
@@ -150,7 +151,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--primary-gradient);
+            background: var(--button-green);
             opacity: 0;
             transition: opacity var(--transition-normal) ease;
         }
@@ -178,7 +179,7 @@
             gap: 8px;
             flex-wrap: wrap;
         }
-        .download-section {
+        .links-section {
             margin-top: 30px;
         }
         .section-title {
@@ -195,78 +196,8 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: var(--primary-gradient);
+            background: var(--button-green);
             border-radius: 3px;
-        }
-        .platforms-container {
-            background: var(--glass-background);
-            backdrop-filter: blur(var(--blur-sm));
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            transition: all var(--transition-normal) ease;
-        }
-        .platforms-container:hover {
-            box-shadow: var(--box-shadow);
-            background: var(--card-background-hover);
-        }
-        .platforms-grid {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 20px;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .platform-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all var(--transition-normal) ease;
-            text-align: center;
-            flex: 1;
-            min-width: 0;
-        }
-        .platform-card:hover {
-            transform: translateY(-5px);
-        }
-        .platform-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        .platform-card span {
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .theme-toggle {
-            background: none;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-tertiary);
-            background-color: rgba(226, 232, 240, 0.5);
-            transition: all var(--transition-normal) ease;
-        }
-        .theme-toggle:hover {
-            background-color: rgba(226, 232, 240, 0.8);
-            color: var(--text-primary);
-            transform: rotate(30deg);
-        }
-        .theme-toggle svg {
-            width: 20px;
-            height: 20px;
-        }
-        .links-section {
-            margin-top: 30px;
         }
         .accordion {
             background: var(--glass-background);
@@ -277,7 +208,7 @@
         .accordion-header {
             padding: 15px;
             cursor: pointer;
-            background: var(--primary-gradient);
+            background: var(--button-green);
             color: white;
             font-weight: 600;
             display: flex;
@@ -286,7 +217,7 @@
             transition: all var(--transition-normal) ease;
         }
         .accordion-header:hover {
-            background: var(--primary-dark);
+            background: var(--button-dark-green);
         }
         .accordion-header::after {
             content: "▼";
@@ -304,7 +235,7 @@
         }
         .accordion-content.active {
             padding: 15px;
-            max-height: 500px; 
+            max-height: 500px;
         }
         .links-list {
             list-style: none;
@@ -343,18 +274,35 @@
             transition: all var(--transition-fast) ease;
         }
         .copy-button {
-            background: var(--primary-gradient);
+            background: var(--button-green);
             color: white;
         }
         .copy-button:hover {
-            background: var(--primary-dark);
+            background: var(--button-dark-green);
         }
         .qr-button {
-            background: var(--secondary-gradient);
+            background: var(--button-green);
             color: white;
         }
         .qr-button:hover {
-            opacity: 0.9;
+            background: var(--button-dark-green);
+        }
+        .convert-button {
+            width: 100%;
+            background: var(--button-green);
+            color: white;
+            font-size: 1.25rem;
+            padding: 18px 0;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast) ease;
+            margin: 20px 0;
+        }
+        .convert-button:hover {
+            background: var(--button-dark-green);
         }
         .qr-popup {
             display: none;
@@ -366,7 +314,6 @@
             padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow-lg);
-            backdrop-filter: blur(var(--blur-sm));
             border: 1px solid var(--border-color);
             z-index: 1000;
         }
@@ -375,7 +322,7 @@
             margin-bottom: 10px;
         }
         .qr-close-button button {
-            background: var(--danger-gradient);
+            background: var(--button-red);
             color: white;
             border: none;
             border-radius: 50%;
@@ -385,18 +332,17 @@
             font-weight: 600;
         }
         .qr-close-button button:hover {
-            opacity: 0.9;
+            background: #cc0000;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body data-theme="dark">
     <div class="container">
-        <div class="card animate-fade-in">
+        <div class="card animate-fade-in" id="mainPage">
             <div class="card-header">
                 <div class="card-title">
                     <h1>Subscription</h1>
-                    <!-- Theme toggle removed: dark mode only -->
                 </div>
                 <div class="username animate-fade-in delay-1">{{ user.username }}</div>
             </div>
@@ -446,14 +392,14 @@
                     <div class="accordion">
                         <div class="accordion-header" id="accordionToggle">Configuration Links</div>
                         <div class="accordion-content" id="accordionContent">
-                            <button class="copy-button" id="copyAllConfigsBtn" style="margin: 20px 0; width: 100%; font-size: 1.25rem; padding: 18px 0; border-radius: 20px; font-weight: 700; letter-spacing: 0.03em;">Copy All Configs</button>
+                            <button class="convert-button" id="convertBtn">Convert</button>
                             <ul class="links-list">
                                 {% if user.links and user.links|length > 0 %}
                                     {% for link in user.links %}
                                     <li class="link-item">
                                         <input type="text" value="{{ link }}" readonly>
                                         <button class="copy-button" onclick="copyLink('{{ link }}', this)">Copy</button>
-                                        <button class="qr-button" data-link="{{ link }}">QR Code</button>
+                                        <button class="qr-button" data-link="{{ link }}">QR</button>
                                     </li>
                                     {% endfor %}
                                 {% else %}
@@ -478,7 +424,6 @@
     </div>
 
     <script>
-
         function copyLink(link, button) {
             const tempInput = document.createElement('input');
             tempInput.setAttribute('value', link);
@@ -490,25 +435,23 @@
             setTimeout(() => { button.textContent = 'Copy'; }, 1500);
         }
 
-        // Copy All Configs button logic
-        const copyAllBtn = document.getElementById('copyAllConfigsBtn');
-        if (copyAllBtn) {
-            copyAllBtn.addEventListener('click', function() {
-                const inputs = document.querySelectorAll('.links-list input');
-                let allLinks = Array.from(inputs).map(input => input.value).join('\n');
-                if (allLinks) {
-                    const tempInput = document.createElement('textarea');
-                    tempInput.value = allLinks;
-                    document.body.appendChild(tempInput);
-                    tempInput.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(tempInput);
-                    copyAllBtn.textContent = 'Copied!';
-                    setTimeout(() => { copyAllBtn.textContent = 'Copy All Configs'; }, 1500);
+        // Convert Current URL
+        const convertBtn = document.getElementById('convertBtn');
+        if (convertBtn) {
+            convertBtn.addEventListener('click', () => {
+                const currentUrl = window.location.href;
+                if (currentUrl) {
+                    const baseUrl = 'https://sub.bonds.id/sub2?target=clash&url=';
+                    const configParams = '&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=true&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true';
+                    const convertedLink = `${baseUrl}${encodeURIComponent(currentUrl)}${configParams}`;
+                    window.open(convertedLink, '_blank');
+                    convertBtn.textContent = 'Converted!';
+                    setTimeout(() => { convertBtn.textContent = 'Convert'; }, 1500);
                 }
             });
         }
 
+        // QR Code handling
         const qrButtons = document.querySelectorAll('.qr-button');
         const qrPopup = document.getElementById('qrPopup');
         const qrCodeContainer = document.getElementById('qrCodeContainer');
@@ -533,6 +476,7 @@
             qrPopup.style.display = 'none';
         }
 
+        // Accordion handling
         const accordionToggle = document.getElementById('accordionToggle');
         const accordionContent = document.getElementById('accordionContent');
 
