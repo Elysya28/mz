@@ -1,11 +1,5 @@
 
-- wget https://github.com/nationpwned/mz/raw/refs/heads/main/install.sh
-- chmod +x install.sh
-- sudo su > ./install.sh OR sudo su -c "./install.sh"
+```
+wget https://raw.githubusercontent.com/Elysya28/mz/main/install.sh && chmod +x install.sh && ./install.sh
+```
 
-
-- Source
-  https://github.com/gozargah/marzban
-  
-- Installation
-  https://gozargah.github.io/marzban/en/docs/introduction
