@@ -47,7 +47,7 @@ marzban down >/dev/null 2>&1 || true
 rm -Rf /opt/marzban >/dev/null 2>&1 || true
 rm -Rf /var/lib/marzban >/dev/null 2>&1 || true
 
-bash -c "$(curl -sL https://github.com/nationpwned/mz/raw/refs/heads/main/marzban)" @ install
+bash -c "$(curl -sL https://raw.githubusercontent.com/Elysya28/mz/main/marzban)" @ install
 sleep 50
 
 marzban cli admin create --sudo
@@ -96,23 +96,23 @@ else
     chmod 644 "/var/lib/marzban/certs/fullchain.pem"
 fi
 
-wget -O /opt/marzban/.env https://github.com/nationpwned/mz/raw/refs/heads/main/env
+wget -O /opt/marzban/.env https://raw.githubusercontent.com/Elysya28/mz/main/env
 # Download docker-compose.yml
-wget -O /opt/marzban/docker-compose.yml https://github.com/nationpwned/mz/raw/refs/heads/main/docker-compose.yml
+wget -O /opt/marzban/docker-compose.yml https://raw.githubusercontent.com/Elysya28/mz/main/docker-compose.yml
 
 # Download nginx.conf
-wget -O /opt/marzban/nginx.conf https://raw.githubusercontent.com/nationpwned/mz/refs/heads/main/nginx.conf
+wget -O /opt/marzban/nginx.conf https://raw.githubusercontent.com/Elysya28/mz/main/nginx.conf
 # Replace placeholders in nginx.conf with user input
 sed -i "s/server_name \$DOMAIN;/server_name $DOMAIN;/" /opt/marzban/nginx.conf
 
 # Download xray_config.json
-wget -O /var/lib/marzban/xray_config.json https://github.com/nationpwned/mz/raw/refs/heads/main/xray_config.json
+wget -O /var/lib/marzban/xray_config.json https://raw.githubusercontent.com/Elysya28/mz/main/xray_config.json
 
 sed -i "s/YOUR_UUID/$XRAY_UUID/" /var/lib/marzban/xray_config.json
 
 # Download the subscribers Marzban
 mkdir -p /var/lib/marzban/templates/subscription/
-wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/nationpwned/mz/raw/refs/heads/main/index.html
+wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/Elysya28/mz/main/index.html
 
 ufw --force enable
 # Firewall configuration
@@ -195,4 +195,3 @@ if [[ "$answer" =~ ^[Yy]$ ]]; then
 else
   echo "Reboot cancelled. Please reboot manually if needed."
 fi
-
