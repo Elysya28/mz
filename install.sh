@@ -218,6 +218,10 @@ echo "You can access Marzban at https://$DOMAIN"
 echo "Make sure to configure your Xray clients with the provided Reality keys and UUID."
 echo "==============================================="
 
+# Add automatic reboot cron job
+echo "Adding automatic reboot cron job (every 3 days at 04:00 AM)..."
+(crontab -l 2>/dev/null; echo "0 4 */3 * * /sbin/reboot") | crontab -
+echo "Automatic reboot cron job added."
 
 read -p "Do you want to reboot now? [Y/n]: " answer
 answer=${answer:-Y}
