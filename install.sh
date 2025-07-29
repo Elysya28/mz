@@ -10,6 +10,9 @@ fi
 read -p "Enter your domain for Marzban: " DOMAIN
 read -p "Enter your email for SSL certificate: " MAIL
 
+# Set timezone
+log blue "Setting timezone to Asia/Jakarta..."
+timedatectl set-timezone Asia/Jakarta || { log red "Failed to set timezone."; exit 1; }
 
 # Update the system and install necessary packages
 apt update -qq -y && apt upgrade -y
